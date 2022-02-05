@@ -1,0 +1,55 @@
+<h1>Angular Nested / Dynamic FormArray</h1>
+
+<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+  <div formArrayName="categories" class="sections">
+    <div *ngFor="let category of categories().controls; let catIndex=index">
+      <div [formGroupName]="catIndex"
+        style="border: 1px solid blue; padding: 10px; width: 800px; margin: 5px; background: pink;">
+        <p><strong>Category : {{catIndex+1}}</strong></p>
+        Category ID :
+        <input type="text" formControlName="categoryID" />
+        Category Name:
+        <input type="text" formControlName="categoryName" />
+
+        <button class="remove" (click)="removeCategory(catIndex)">Remove Category</button>
+
+        <div formArrayName="sections" class="sections">
+          <div *ngFor="let section of sections(catIndex).controls; let sectionIndex=index" style="border: 1px solid red;margin: 10px 20px;padding: 10px; background: lightskyblue;">
+            <div [formGroupName]="sectionIndex">
+              <p><strong>Section : {{sectionIndex+1}}</strong></p>
+              Sections ID :
+              <input type="text" formControlName="sectionID" />
+              Section Name:
+              <input type="text" formControlName="sectionName" />
+
+              <button class="remove" (click)="removeSection(catIndex,sectionIndex)">
+                Remove Section
+              </button>
+              <div formArrayName="subSections" class="sections">
+                <div *ngFor="let subSection of subSections(catIndex,sectionIndex).controls; let subSectionIndex=index" style="border: 1px solid green;margin: 10px 20px;padding: 10px; background: lightgreen;">
+                  <div [formGroupName]="subSectionIndex">
+                    <p><strong>Sub Section : {{subSectionIndex+1}}</strong></p>
+                    Sub Sections Name :
+                    <input type="text" formControlName="subSectionName" />
+                    <button class="remove" (click)="removeSubSection(catIndex,sectionIndex,subSectionIndex)">
+                      Remove Sub Section
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <button class="btn" type="button" (click)="addSubSection(catIndex, sectionIndex)">
+                Add Sub Section
+              </button>
+            </div>
+          </div>
+        </div>
+        <button class="btn" type="button" (click)="addSection(catIndex)">
+          Add Section
+        </button>
+      </div>
+    </div>
+    <button class="btn" type="button" (click)="addCategory()">Add Category</button>
+  </div>
+</form>
+
+{{this.categoryForm.value | json}}

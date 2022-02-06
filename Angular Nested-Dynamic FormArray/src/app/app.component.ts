@@ -60,11 +60,10 @@ export class AppComponent {
   }
 
   subSections(catIndex: number, sectionIndex: number): FormArray {
-    let skills = this.categories()
+    let categories = this.categories()
       .at(catIndex)
       .get('sections') as FormArray;
-    let subSkills = skills.at(sectionIndex).get('subSections') as FormArray;
-    return subSkills;
+    return categories.at(sectionIndex).get('subSections') as FormArray;
   }
 
   subSection(): FormGroup {

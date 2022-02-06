@@ -16,7 +16,7 @@ export class AppComponent {
       categories: this.fb.array([])
     });
     // If required to fill/pre populate data from Object then call below method(setCategories)
-    this.setCategories();
+    // this.setCategories();
   }
 
   categories(): FormArray {

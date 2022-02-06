@@ -1,0 +1,12 @@
+<h1>Angular Nested / Dynamic FormArray with Child component</h1>
+
+<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+  <div formArrayName="categories" class="sections">
+    <div *ngFor="let category of categories().controls; let catIndex=index">
+        <app-category [formGroupName]="catIndex" [categories]="categories()" [newSection]="newSection()" [newSubSection]="newSubSection()" [category]="category" [catIndex]="catIndex" sectionName="sections" subSectionName="subSections"></app-category>
+    </div>
+  </div>
+  <button class="btn" type="button" (click)="addCategory()">Add Category</button>
+</form>
+
+{{this.categoryForm.value | json}}

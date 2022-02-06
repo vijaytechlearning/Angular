@@ -1,0 +1,8 @@
+<form [formGroup]="subSection">
+  <div style="border: 1px solid green;margin: 10px 20px;padding: 10px; background: lightgreen;">
+    <p><strong>Sub Section : {{subSectionIndex+1}}</strong></p>
+    Sub Sections Name :
+    <input type="text" formControlName="subSectionName" />
+    <button type="button" class="remove" (click)="removeSubSection()">Remove Sub Section</button>
+  </div>
+</form>

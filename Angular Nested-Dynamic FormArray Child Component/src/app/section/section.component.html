@@ -1,0 +1,22 @@
+<form [formGroup]="section">
+  <div style="border: 1px solid red;margin: 10px 20px;padding: 10px; background: lightskyblue;">
+    <p><strong>Section : {{sectionIndex+1}}</strong></p>
+    Sections ID :
+    <input type="text" formControlName="sectionID" />
+    Section Name:
+    <input type="text" formControlName="sectionName" />
+
+    <button type="button" class="remove" (click)="removeSection()">
+      Remove Section
+    </button>
+    <div formArrayName="subSections" class="sections">
+      <div *ngFor="let subSection of subSections().controls; let subSectionIndex=index">
+          <app-sub-section [formGroupName]="subSectionIndex" [subSections]="subSections( sectionIndex)" [subSection]="subSection" [subSectionIndex]="subSectionIndex"></app-sub-section>
+      </div>
+    </div>
+    <div>
+      <button class="btn" type="button" (click)="addSubSection()">Add Sub Section</button>
+    </div>
+  </div>
+
+</form>
